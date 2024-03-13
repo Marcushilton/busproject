@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Schedule Search</title>
+</head>
+<body>
+    <h1>Bus Schedule Search</h1>
+    <form action="http://127.0.0.1:5000/busSchedule" method="GET">
+        <label for="bus_route">Enter Bus Route:</label><br>
+        <input type="text" id="bus_route" name="bus_route"><br>
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+    <h2>Search Results:</h2>
+    <ul>
+        {% for schedule in bus_schedules %}
+            <li>{{ schedule }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

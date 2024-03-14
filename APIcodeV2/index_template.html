@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Schedule Search</title>
+
+   <style>
+/* CSS for table styling */
+table {
+    border-collapse: collapse;
+    width: 50%; /* Adjust the width as needed */
+    margin: auto; /* Center-align the table */
+}
+th, td {
+    border: 1px solid black; /* Add border to table cells */
+    padding: 8px; /* Add padding to table cells */
+    text-align: center; /* Center-align the text within cells */
+}
+</style>
+
+</head>
+<body>
+    <h1>Bus Schedule Search</h1>
+    <form action="http://127.0.0.1:5000/busSchedule" method="GET">
+
+        <label for="bus_route">Enter Bus Stop ID:</label><br>
+        <input type="number" id="bus_route" name="bus_route"><br>
+
+        <label for="bus_route">Enter Departure Time: (HH:MM) </label><br>
+        <input type="time" step = "any" id="bus_time" name="bus_time"><br>
+
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+    <h2>Search Results:</h2>
+    <table>
+    <thead>
+        <tr>
+            <th>Bus Stop ID</th>
+            <th>Arrival Time</th>
+            <th>Location</th>
+            <th>Destination</th>
+            <th>Route</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for schedule in bus_schedules %}
+            <tr>
+                <td>{{ schedule.BusStopID }}</td>
+                <td>{{ schedule.ArrivalTime }}</td>
+                <td>{{ schedule.BusStopLocation }}</td>
+                <td>{{ schedule.BusDestination }}</td>
+                <td>{{ schedule.BusRoute }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
